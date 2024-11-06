@@ -13,43 +13,38 @@ public class Codificacion {
     private String pe;
     private String se;
     private String ps;
-    private String[] texto;
-    private StringBuilder codigo;
+    private String[] textoArr;
     private Ascii diccionario;
     private HelloSocket socket;
+    private String texto;
 
-    public Codificacion(Ascii diccionario, HelloSocket socket) {
-        codigo = new StringBuilder();
-        this.diccionario = diccionario;
-        this.socket = socket;
+    public Codificacion() {
+        diccionario = new Ascii();
+        socket = new HelloSocket();
+        texto = diccionario.getTexto();
     }
 
-    public void codificar(String texto) {
-        this.texto = texto.split("");
+    public void codificar() {
         String cd_codificada = "";
-        pe = this.texto[0];
+        textoArr = texto.split("");
+        pe = textoArr[0];
         System.out.println(se);
 
         for (int i = 0; i <= texto.length() - 1; i++) {
             if (i == texto.length() - 1) {
-                codigo.append(diccionario.contains(pe));
-                socket.socket(String.valueOf(diccionario.contains(pe)));
-                System.out.println("Se envió: " + String.valueOf(diccionario.contains(pe)));
+                socket.socket(String.valueOf(diccionario.getIndex(pe)));
                 break;
             }
-            se = this.texto[i + 1];
+            se = textoArr[i + 1];
             ps = pe + se;
-            if (diccionario.contains(ps) == -1) {
+            if (!diccionario.contains(ps)) {
                 diccionario.put(ps);
-                socket.socket(String.valueOf(diccionario.contains(pe)));
-                codigo.append(diccionario.contains(pe) + ",");
-                System.out.println("Se envio: " +  String.valueOf(diccionario.contains(pe)));
+                socket.socket(String.valueOf(diccionario.getIndex(pe)));
                 pe = se;
             } else {
                 pe = ps;
             }
         }
-        cd_codificada = codigo.toString();//este era el retorno
-        System.out.println(cd_codificada);
+
     }
 }

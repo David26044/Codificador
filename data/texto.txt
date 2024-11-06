@@ -1,1 +1,3 @@
-wabba-wabba-wabba-wabba-woo-woo-woo
+Hola, este es el archivo de prueba.
+Tambien puede leer saltos de linea
+ y  tabulador.

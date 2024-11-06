@@ -28,7 +28,7 @@ import javax.swing.JOptionPane;
         /* Client:Data >> Socket >> Server */
         public void socket(String msg) {
             try {
-                Socket client = new Socket("172.16.128.90", 5000); // portSend 5000
+                Socket client = new Socket("192.168.0.13", 5000); // portSend 5000
                 DataOutputStream outBuffer = new DataOutputStream(client.getOutputStream());
                 outBuffer.writeUTF(msg);
                 client.close();

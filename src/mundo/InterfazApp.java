@@ -11,9 +11,7 @@ package mundo;
 public class InterfazApp {
 
     public static void main(String[] args) {
-        Ascii diccionario = new Ascii();
-        HelloSocket socket = new HelloSocket();
-        Codificacion cod = new Codificacion(diccionario, socket);
-        cod.codificar("wabba-wabba-wabba-wabba-woo-woo-woo");
+        Codificacion cod = new Codificacion();
+        cod.codificar();
     }
 }
