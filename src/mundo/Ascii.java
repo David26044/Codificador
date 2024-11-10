@@ -54,7 +54,7 @@ public class Ascii {
     
     private void leerTxtCodificar() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("data/texto.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("data/texto - copia.txt"));
             String linea = br.readLine();
             while (linea != null) {
                 texto += linea;
@@ -71,12 +71,7 @@ public class Ascii {
     }
 
     public boolean contains(String c) {
-        for (String s : tabla) {
-            if (c.equals(s)) {
-                return true;
-            }
-        }
-        return false;
+        return tabla.contains(c);
     }
 
     public void mostrarTabla() {

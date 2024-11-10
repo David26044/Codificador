@@ -25,20 +25,21 @@ public class Codificacion {
     }
 
     public void codificar() {
-        String cd_codificada = "";
         textoArr = texto.split("");
         pe = textoArr[0];
         System.out.println(se);
 
         for (int i = 0; i <= texto.length() - 1; i++) {
             if (i == texto.length() - 1) {
-                socket.socket(String.valueOf(diccionario.getIndex(pe)));
+                System.out.println("Se envia " + String.valueOf(diccionario.getIndex(pe)));
+                socket.socket(String.valueOf(diccionario.getIndex(pe))); //si es la ultima iteracion se codifica pe
                 break;
             }
             se = textoArr[i + 1];
             ps = pe + se;
             if (!diccionario.contains(ps)) {
                 diccionario.put(ps);
+                System.out.println("Se envia " + String.valueOf(diccionario.getIndex(pe)));
                 socket.socket(String.valueOf(diccionario.getIndex(pe)));
                 pe = se;
             } else {
