@@ -9,9 +9,9 @@ package mundo;
  * @author ACER
  */
 public class InterfazApp {
-
+    
     public static void main(String[] args) {
-        Codificacion cod = new Codificacion();
+        Codificacion cod = new Codificacion(new HelloSocket());
         cod.codificar();
-    }
+}
 }

@@ -13,15 +13,16 @@ public class Codificacion {
     private String pe;
     private String se;
     private String ps;
+    
     private String[] textoArr;
     private Ascii diccionario;
     private HelloSocket socket;
     private String texto;
 
-    public Codificacion() {
+    public Codificacion(HelloSocket socket) {
         diccionario = new Ascii();
-        socket = new HelloSocket();
         texto = diccionario.getTexto();
+        this.socket = socket;
     }
 
     public void codificar() {
