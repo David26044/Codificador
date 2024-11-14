@@ -31,16 +31,16 @@ public class HelloSocket implements Runnable {
 
     /* Client:Data >> Socket >> Server */
     public void socket(String msg) {
-    for (String ip : ips) {
+    for (int i = 0; i< ips.size(); i++) {
         try {
-            Socket client = new Socket(ip, 5000); // Conectar a cada IP en el puerto 5000
+            Socket client = new Socket(ips.get(i).toString(), 5000); // Conectar a cada IP en el puerto 5000
             DataOutputStream outBuffer = new DataOutputStream(client.getOutputStream());
             outBuffer.writeUTF(msg);
             client.close();
         } catch (UnknownHostException e) {
-            JOptionPane.showMessageDialog(null, "Client: socket(1) : UnknownHostException: " + e.getMessage() + " for IP: " + ip);
+            JOptionPane.showMessageDialog(null, "Client: socket(1) : UnknownHostException: " + e.getMessage() + " for IP: " + ips.get(i));
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Client: socket(2) : IOException: " + e.getMessage() + " for IP: " + ip);
+            JOptionPane.showMessageDialog(null, "Client: socket(2) : IOException: " + e.getMessage() + " for IP: " + ips.get(i));
             System.exit(0);
         }
     }
