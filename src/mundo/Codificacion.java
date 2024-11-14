@@ -25,27 +25,34 @@ public class Codificacion {
         this.socket = socket;
     }
 
-    public void codificar() {
+    public void codificar() throws InterruptedException {
         textoArr = texto.split("");
         pe = textoArr[0];
-        System.out.println(se);
 
         for (int i = 0; i <= texto.length() - 1; i++) {
             if (i == texto.length() - 1) {
-                System.out.println("Se envia " + String.valueOf(diccionario.getIndex(pe)));
                 socket.socket(String.valueOf(diccionario.getIndex(pe))); //si es la ultima iteracion se codifica pe
                 break;
             }
             se = textoArr[i + 1];
+            
+            if (se.equals("L")) {
+                if (i+2 < texto.length()) {
+                    if (textoArr[i+2].equals("F")) {
+                        se = "LF";
+                        i++;
+                    }
+                }
+            }
             ps = pe + se;
             if (!diccionario.contains(ps)) {
                 diccionario.put(ps);
-                System.out.println("Se envia " + String.valueOf(diccionario.getIndex(pe)));
                 socket.socket(String.valueOf(diccionario.getIndex(pe)));
                 pe = se;
             } else {
                 pe = ps;
             }
+            Thread.sleep(100); // 100 ms, ajusta según sea necesario
         }
 
     }

@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,13 +32,12 @@ public class Ascii {
             BufferedReader br = new BufferedReader(new FileReader("data/asciiComp.txt"));
             String linea = br.readLine();
             while (linea != null) {
-                System.out.println("Se agregó: " + linea);
                 tabla.add(linea);
                 linea = br.readLine();
             }
             br.close();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 
@@ -54,30 +54,23 @@ public class Ascii {
     
     private void leerTxtCodificar() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("data/texto - copia.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("data/texto.txt"));
             String linea = br.readLine();
             while (linea != null) {
                 texto += linea;
                 linea = br.readLine();
                 if (linea != null) {
-                    texto += "LF";
+                    texto += tabla.get(10);
                 }
             }
-            System.out.println("texto: " + texto);
             br.close();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 
     public boolean contains(String c) {
         return tabla.contains(c);
-    }
-
-    public void mostrarTabla() {
-        for (String s : tabla) {
-            System.out.println(s);
-        }
     }
 
     public String getCode(int index) {

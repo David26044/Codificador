@@ -31,20 +31,21 @@ public class HelloSocket implements Runnable {
 
     /* Client:Data >> Socket >> Server */
     public void socket(String msg) {
+    for (String ip : ips) {
         try {
-            ips.add("172.16.128.182");
-            for (String ip : ips) {
-                Socket client = new Socket(ip, 5000); // portSend 5000
-                DataOutputStream outBuffer = new DataOutputStream(client.getOutputStream());
-                outBuffer.writeUTF(msg);
-                client.close();
-            }
+            Socket client = new Socket(ip, 5000); // Conectar a cada IP en el puerto 5000
+            DataOutputStream outBuffer = new DataOutputStream(client.getOutputStream());
+            outBuffer.writeUTF(msg);
+            client.close();
         } catch (UnknownHostException e) {
-            JOptionPane.showMessageDialog(null, "Client: socket(1) : UnknownHostException: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Client: socket(1) : UnknownHostException: " + e.getMessage() + " for IP: " + ip);
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Client: socket(2) : IOException: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Client: socket(2) : IOException: " + e.getMessage() + " for IP: " + ip);
+            System.exit(0);
         }
     }
+}
+
 
     @Override
     /* Client: Listen */
@@ -60,7 +61,6 @@ public class HelloSocket implements Runnable {
                 socket = serverSocket.accept();
                 inDataBuffer = new DataInputStream(socket.getInputStream());
                 String msg = inDataBuffer.readUTF();
-                System.out.println(msg);
                 socket.close();
             }
         } catch (IOException e) {

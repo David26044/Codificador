@@ -4,8 +4,10 @@
  */
 package controlador;
 
-import mundo.Codificacion;
-import mundo.HelloSocket;
+
+import mundo.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,7 +24,11 @@ public class Controlador {
     }
 
     public void iniciar() {
-        cod.codificar();
+        try {
+            cod.codificar();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void agregarIp(String ip) {
